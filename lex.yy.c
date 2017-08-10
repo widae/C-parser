@@ -673,50 +673,54 @@ char *yytext;
 /*
 LEX FILE FOR A C LIKE LANGUAGE AS MENTIONED IN THE REF.PDF
 
-FILE NAME: 				CLANG.LEX
-FUNCTION: 				CONVERT THE GIVEN INPUT FILES-CODE INTO A SET OF TOKENS (DIRECTELY),
-									TO BE PASSED ON TO THE PARSER TO GENRATE THE PARSE TREE.
-SUBMITTED BY: 		GROUP 10, COMPILERS LAB, IIT PATNA
-GROUP MEMBERS: 		TANMAY DAS (1401CS47)
-									MAYANK GOYAL (1401CS25)
-									AVANISH KUMAR DAS (1401CS05)
+FILE NAME:                              CLANG.LEX
+FUNCTION:                               CONVERT THE GIVEN INPUT FILES-CODE INTO A SET OF TOKENS (DIRECTELY),
+                                                                        TO BE PASSED ON TO THE PARSER TO GENRATE THE PARSE TREE.
+SUBMITTED BY:           GROUP 10, COMPILERS LAB, IIT PATNA
+GROUP MEMBERS:          TANMAY DAS (1401CS47)
+                                                                        MAYANK GOYAL (1401CS25)
+                                                                        AWANISH KUMAR DAS (1401CS05)
 */
 /*
 CONTRIBUTION BY:
-	(1) TANMAY DAS:   			Creating the regex for required input types, constants, etc.;
-													Creating the function to recognize comment of type / * * / and //;
-													Creating the function for detection of printf() {specifically because the above
-													mentioned declaration would not be included in the code as it implicit};
-													Including the function count() to avoid/skip empty-space/tabs, etc along with
-												  counting the column number at each line;
-													Commenting the clang.lex file;
+        (1) TANMAY DAS:                         Creating the regex for required input types, constants, etc.;
+                                                                                                        Creating the function to recognize comment of type / * * / and //;
+                                                                                                        Creating the function for detection of printf() {specifically because the above
+                                                                                                        mentioned declaration would not be included in the code as it implicit};
+                                                                                                        Including the function count() to avoid/skip empty-space/tabs, etc along with
+                                                                                                  counting the column number at each line;
+                                                                                                        Commenting the clang.lex file;
 
-	(2) MAYANK GOYAL:				Mentioning all the operators required as per the c-like language and
-													passing it to the output file.
-													Including the yylineno variable at every newline detection to increment line number;
-													Commenting the clang.lex file;
+        (2) MAYANK GOYAL:                               Mentioning all the operators required as per the c-like language and
+                                                                                                        passing it to the output file.
+                                                                                                        Including the yylineno variable at every newline detection to increment line number;
+                                                                                                        Commenting the clang.lex file;
 
-	(3) AVANISH KUMAR DAS:  Mentioning the restricted names of identifiers and passing it as token
-	 												in the output file, lex.yy.c
-													Commenting the clang.lex file;
+        (3) AVANISH KUMAR DAS:  Mentioning the restricted names of identifiers and passing it as token
+                                                                                                        in the output file, lex.yy.c
+                                                                                                        Commenting the clang.lex file;
 */
 #line 41 "clang.lex"
-	#include <stdio.h>
-	#include "y.tab.h"
-	extern YYSTYPE yylval;
-	char yyprev[100];
-	int open_brace = 1;
-	int is_brace_start = 0;
-	int func_par_define = 0;
-	int no_of_local_var[1000] = {0};
-	extern int yylineno;
-	void count();
+        #include <stdio.h>
+        #include "y.tab.h"
+        extern YYSTYPE yylval;
+
+        // widae 1
+        int button = 0;
+
+        char yyprev[100];
+        int open_brace = 1;
+        int is_brace_start = 0;
+        int func_par_define = 0;
+        int no_of_local_var[1000] = {0};
+        extern int yylineno;
+        void count();
 /*
-	Defining all the restricted keywords.
-	Defining all the constants/ numbers, etc and passing its value
-	Defining all the operators used in the c-like language
+        Defining all the restricted keywords.
+        Defining all the constants/ numbers, etc and passing its value
+        Defining all the operators used in the c-like language
 */
-#line 720 "lex.yy.c"
+#line 724 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -903,10 +907,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 61 "clang.lex"
+#line 65 "clang.lex"
 
 
-#line 910 "lex.yy.c"
+#line 914 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -1001,518 +1005,518 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 63 "clang.lex"
+#line 67 "clang.lex"
 { comment(); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 64 "clang.lex"
+#line 68 "clang.lex"
 {comment2();}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 65 "clang.lex"
+#line 69 "clang.lex"
 {comment1();}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 66 "clang.lex"
+#line 70 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(AUTO); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 67 "clang.lex"
+#line 71 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(BREAK); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 68 "clang.lex"
+#line 72 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(CASE); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 69 "clang.lex"
+#line 73 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(CHAR); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 70 "clang.lex"
+#line 74 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(CONST); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 71 "clang.lex"
+#line 75 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(CONTINUE); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 72 "clang.lex"
+#line 76 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DEFAULT); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 73 "clang.lex"
+#line 77 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DO); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 74 "clang.lex"
+#line 78 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DOUBLE); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 75 "clang.lex"
+#line 79 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(ELSE); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 76 "clang.lex"
+#line 80 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(ENUM); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 77 "clang.lex"
+#line 81 "clang.lex"
 { strcpy(yyprev,yytext); count(); return(EXTERN); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 78 "clang.lex"
+#line 82 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(FLOAT); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 79 "clang.lex"
+#line 83 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(FOR); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 80 "clang.lex"
+#line 84 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(GOTO); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 81 "clang.lex"
+#line 85 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(IF); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 82 "clang.lex"
+#line 86 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(INT); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 83 "clang.lex"
+#line 87 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(LONG); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 84 "clang.lex"
+#line 88 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(REGISTER); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 85 "clang.lex"
+#line 89 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(RETURN); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 86 "clang.lex"
+#line 90 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(SHORT); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 87 "clang.lex"
+#line 91 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(SIGNED); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 88 "clang.lex"
+#line 92 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(SIZEOF); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 89 "clang.lex"
+#line 93 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(STATIC); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 90 "clang.lex"
+#line 94 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(STRUCT); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 91 "clang.lex"
+#line 95 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(SWITCH); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 92 "clang.lex"
+#line 96 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(TYPEDEF); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 93 "clang.lex"
+#line 97 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(UNION); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 94 "clang.lex"
+#line 98 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(UNSIGNED); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 95 "clang.lex"
+#line 99 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(VOID); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 96 "clang.lex"
+#line 100 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(VOLATILE); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 97 "clang.lex"
+#line 101 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(WHILE); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 98 "clang.lex"
+#line 102 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DEFINE); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 99 "clang.lex"
+#line 103 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(LINE); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 100 "clang.lex"
+#line 104 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(INCLUDE); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 101 "clang.lex"
+#line 105 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(ERROR); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 102 "clang.lex"
+#line 106 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(PRAGMA); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 103 "clang.lex"
+#line 107 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(UNDEF); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 104 "clang.lex"
+#line 108 "clang.lex"
 {strcpy(yyprev,yytext);count(); return(PRE); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 108 "clang.lex"
+#line 112 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(check_type()); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 110 "clang.lex"
+#line 114 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 111 "clang.lex"
+#line 115 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 112 "clang.lex"
+#line 116 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 47:
 /* rule 47 can match eol */
 YY_RULE_SETUP
-#line 113 "clang.lex"
+#line 117 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 115 "clang.lex"
+#line 119 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 116 "clang.lex"
+#line 120 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 117 "clang.lex"
+#line 121 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(CONSTANT); }
 	YY_BREAK
 case 51:
 /* rule 51 can match eol */
 YY_RULE_SETUP
-#line 119 "clang.lex"
+#line 123 "clang.lex"
 { strcpy(yyprev,yytext);count(); strcpy(yylval.val, yytext); return(STRING_LITERAL); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 123 "clang.lex"
+#line 127 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(ELLIPSIS); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 124 "clang.lex"
+#line 128 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(RIGHT_ASSIGN); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 125 "clang.lex"
+#line 129 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(LEFT_ASSIGN); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 126 "clang.lex"
+#line 130 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(ADD_ASSIGN); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 127 "clang.lex"
+#line 131 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(SUB_ASSIGN); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 128 "clang.lex"
+#line 132 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(MUL_ASSIGN); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 129 "clang.lex"
+#line 133 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DIV_ASSIGN); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 130 "clang.lex"
+#line 134 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(MOD_ASSIGN); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 131 "clang.lex"
+#line 135 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(AND_ASSIGN); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 132 "clang.lex"
+#line 136 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(XOR_ASSIGN); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 133 "clang.lex"
+#line 137 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(OR_ASSIGN); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 134 "clang.lex"
+#line 138 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(RIGHT_OP); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 135 "clang.lex"
+#line 139 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(LEFT_OP); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 136 "clang.lex"
+#line 140 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(INC_OP); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 137 "clang.lex"
+#line 141 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(DEC_OP); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 138 "clang.lex"
+#line 142 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(PTR_OP); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 139 "clang.lex"
+#line 143 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(AND_OP); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 140 "clang.lex"
+#line 144 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(OR_OP); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 141 "clang.lex"
+#line 145 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(LE_OP); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 142 "clang.lex"
+#line 146 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(GE_OP); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 143 "clang.lex"
+#line 147 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(EQ_OP); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 144 "clang.lex"
+#line 148 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(NE_OP); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 145 "clang.lex"
+#line 149 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(';'); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 146 "clang.lex"
+#line 150 "clang.lex"
 { open_brace++; is_brace_start = 1; strcpy(yyprev,yytext);count(); return('{'); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 147 "clang.lex"
+#line 151 "clang.lex"
 { no_of_local_var[open_brace] = 0; open_brace--; is_brace_start = 0; strcpy(yyprev,yytext);count(); return('}'); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 148 "clang.lex"
+#line 152 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(','); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 149 "clang.lex"
+#line 153 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(':'); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 150 "clang.lex"
+#line 154 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('='); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 151 "clang.lex"
+#line 155 "clang.lex"
 { func_par_define = 1; strcpy(yyprev,yytext);count(); return('('); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 152 "clang.lex"
+#line 156 "clang.lex"
 { func_par_define = 0; strcpy(yyprev,yytext);count(); return(')'); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 153 "clang.lex"
+#line 157 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('['); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 154 "clang.lex"
+#line 158 "clang.lex"
 { strcpy(yyprev,yytext);count(); return(']'); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 155 "clang.lex"
+#line 159 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('.'); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 156 "clang.lex"
+#line 160 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('&'); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 157 "clang.lex"
+#line 161 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('!'); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 158 "clang.lex"
+#line 162 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('~'); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 159 "clang.lex"
+#line 163 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('-'); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 160 "clang.lex"
+#line 164 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('+'); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 161 "clang.lex"
+#line 165 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('*'); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 162 "clang.lex"
+#line 166 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('/'); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 163 "clang.lex"
+#line 167 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('%'); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 164 "clang.lex"
+#line 168 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('<'); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 165 "clang.lex"
+#line 169 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('>'); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 166 "clang.lex"
+#line 170 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('^'); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 167 "clang.lex"
+#line 171 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('|'); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 168 "clang.lex"
+#line 172 "clang.lex"
 { strcpy(yyprev,yytext);count(); return('?'); }
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 169 "clang.lex"
+#line 173 "clang.lex"
 { strcpy(yyprev,yytext);count(); return yytext[0]; }
 	YY_BREAK
 case 99:
 /* rule 99 can match eol */
 YY_RULE_SETUP
-#line 170 "clang.lex"
+#line 174 "clang.lex"
 { strcpy(yyprev,yytext);count();}
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 171 "clang.lex"
+#line 175 "clang.lex"
 { strcpy(yyprev,yytext);count(); }
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 172 "clang.lex"
+#line 176 "clang.lex"
 { strcpy(yyprev,yytext);count(); return MACRO; }
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 174 "clang.lex"
+#line 178 "clang.lex"
 ECHO;
 	YY_BREAK
-#line 1516 "lex.yy.c"
+#line 1520 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2522,81 +2526,87 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 174 "clang.lex"
+#line 178 "clang.lex"
 
 
 
 yywrap(){
-	return(1);
+        return(1);
 }
 
 /*
-	Function to find multiline comment
+        Function to find multiline comment
 */
 
 comment(){
-	char c, c1;
+        char c, c1;
 
 loop:
-	while ((c = input()) != '*' && c != 0);
-		c += 1;
+        while ((c = input()) != '*' && c != 0);
+                c += 1;
 
-	if ((c1 = input()) != '/' && c != 0){
-		unput(c1);
-		goto loop;
-	}
+        if ((c1 = input()) != '/' && c != 0){
+                unput(c1);
+                goto loop;
+        }
 
-	if (c != 0)
-		c1 += 1;
+        if (c != 0)
+                c1 += 1;
 }
 
 /*
-	Function to find single line comment
+        Function to find single line comment
 */
 
 comment2(){
-	char c, c1;
-	while ((c = input()) != '\n' && c != 0);
-		c += 1;
+        char c, c1;
+        while ((c = input()) != '\n' && c != 0);//line chnges comment ends
+                c += 1;
 }
 
 /*
-	Function to find printf
+        Function to find printf
 */
 comment1(){
-	char c, c1;
+        char c, c1;
 
 loop:
-	while ((c = input()) != ')' && c != 0);
-		c += 1;
+        while ((c = input()) != ')' && c != 0);
+                c += 1;
 
-	if ((c1 = input()) != ';' && c != 0)
-	{
-		unput(c1);
-		goto loop;
-	}
+        if ((c1 = input()) != ';' && c != 0)
+        {
+                unput(c1);
+                goto loop;
+        }
 
-	if (c != 0)
-		c1 += 1;
+        if (c != 0)
+                c1 += 1;
 }
 
 /*
-	Function to count the number of column
+        Function to count the number of column
 */
 int column = 0;
 void count(){
-	int i;
 
-	for (i = 0; yytext[i] != '\0'; i++)
-		if (yytext[i] == '\n')
-			column = 0;
-		else if (yytext[i] == '\t')
-			column += 4;
-		else
-			column++;
+        // widae 2
+
+        if(button == 1){
+                printf("%s", yyprev);
+        }
+
+        int i;
+        for (i = 0; yytext[i] != '\0'; i++)
+                if (yytext[i] == '\n') //row changes
+                        column = 0;
+                else if (yytext[i] == '\t')
+                        column += 4;
+                else
+                        column++;
 }
 
 int check_type(){
-	return(IDENTIFIER);
+        return(IDENTIFIER);
 }
 
