@@ -610,12 +610,12 @@ selection_statement
 for
         : FOR
         {
+		int i;
+		button = 1;
                 if(level == 0){
                         printf("\n");
                 }
-                button = 1;
                 printf("line %d\t", yylineno);
-                int i;
                 for(i = 0; i < level; i++){
                         printf("    ");
                 }
@@ -625,13 +625,13 @@ for
 head
         : for '(' expression_statement expression_statement ')'
         {
+		button = 0;
                 printf("\n");
-                button = 0;
         }
         | for '(' expression_statement expression_statement expression ')'
         {
+		button = 0;
                 printf("\n");
-                button = 0;
         }
         ;
 iteration_statement

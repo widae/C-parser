@@ -1683,12 +1683,12 @@ break;
 case 196:
 #line 612 "clang.yacc"
 	{
+		int i;
+		button = 1;
                 if(level == 0){
                         printf("\n");
                 }
-                button = 1;
                 printf("line %d\t", yylineno);
-                int i;
                 for(i = 0; i < level; i++){
                         printf("    ");
                 }
@@ -1699,15 +1699,15 @@ break;
 case 197:
 #line 627 "clang.yacc"
 	{
+		button = 0;
                 printf("\n");
-                button = 0;
         }
 break;
 case 198:
 #line 632 "clang.yacc"
 	{
+		button = 0;
                 printf("\n");
-                button = 0;
         }
 break;
 case 201:
